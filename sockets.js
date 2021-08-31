@@ -1,7 +1,7 @@
 const Message = require('./models/message')
 const moment = require('moment')
 
-module.exports = io => {
+module.exports = (io) => {
   io.on('connection', async (socket) => {
     console.log('New user connected')
 
@@ -14,15 +14,17 @@ module.exports = io => {
       socket.emit('chatId', chatMessages)
     })
 
-    socket.on('sendMessage', async (data) => {
-      const newMessage = new Message({
-        user: data.user,
-        content: data.content,
-        date: moment().format('MMMM Do YYYY, h:mm:ss a'),
-        chat: data.chat
-      })
+    socket.on('sendMessage', (data) => {
+      // const newMessage = new Message({
+      //   user: data.user,
+      //   content: data.content,
+      //   date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+      //   chat: data.chat
+      // })
 
-      newMessage.save().then(data => 'Mensaje enviado')
+      socket.emit('newMessage', data)
+      // newMessage.save().then((data) => {
+      // })
     })
 
     socket.on('disconnect', () => {
