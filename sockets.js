@@ -15,16 +15,18 @@ module.exports = (io) => {
     })
 
     socket.on('sendMessage', (data) => {
-      // const newMessage = new Message({
-      //   user: data.user,
-      //   content: data.content,
-      //   date: moment().format('MMMM Do YYYY, h:mm:ss a'),
-      //   chat: data.chat
-      // })
+      const newMessage = new Message({
+        user: data.user,
+        content: data.content,
+        date: moment().format('MMMM Do YYYY, h:mm:ss a'),
+        chat: data.chat
+      })
 
-      socket.emit('newMessage', data)
-      // newMessage.save().then((data) => {
-      // })
+      io.sockets.emit('newMessage', newMessage)
+      newMessage.save().then(async (data) => {
+        chatMessages = await Message.find({ chat: data.chat })
+        io.sockets.emit('addedMessage', chatMessages)
+      })
     })
 
     socket.on('disconnect', () => {
