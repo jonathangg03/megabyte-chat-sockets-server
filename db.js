@@ -1,13 +1,14 @@
-const mongoose = require('mongoose')
-const { dbUri } = require('./config')
+;(async () => {
+  const mongoose = require('mongoose')
+  const { dbUri } = require('./config')
 
-const connect = () => {
-  mongoose
-    .connect(dbUri, {
+  try {
+    await mongoose.connect(dbUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
-    .then(() => console.log('DB Connected'))
-}
-
-module.exports = connect
+    console.log('DB connected')
+  } catch (error) {
+    console.log(error)
+  }
+})()

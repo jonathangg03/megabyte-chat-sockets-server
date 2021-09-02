@@ -1,10 +1,8 @@
 const app = require('./app')
-const db = require('./db')
+require('./db')
 const http = require('http')
 const socketio = require('socket.io')
 const sockets = require('./sockets')
-
-db()
 
 const server = http.createServer(app)
 const io = socketio(server, {
