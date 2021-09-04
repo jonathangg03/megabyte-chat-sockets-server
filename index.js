@@ -7,8 +7,7 @@ const sockets = require('./sockets')
 const server = http.createServer(app)
 const io = socketio(server, {
   cors: {
-    origin:
-      'https://megabyte-chat.vercel.app/user/60deee1a52fcef7e24e355a0/60e14cffbd6b1f82bc175360',
+    origin: 'https://megabyte-chat.vercel.app',
     methods: ['GET', 'POST']
   }
 })
