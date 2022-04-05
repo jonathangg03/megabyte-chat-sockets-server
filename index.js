@@ -7,8 +7,7 @@ const sockets = require('./sockets')
 const server = http.createServer(app)
 const io = socketio(server, {
   cors: {
-    // origin: 'https:example.com', Direccion del frontend
-    origin: 'http://localhost:3000',
+    origin: ['https://megabyte-chat.vercel.app', 'http://localhost:3000'],
     methods: ['GET', 'POST']
   }
 })

@@ -24,6 +24,6 @@ informe. Sí quieres ver los repositorios de la API REST y del frontend:
   servidor en local (3002, pero puede ser cualquiera), y la URI de nuestra Base
   de datos.
 - En el archivo "index.js", en el objeto "cors" (línea 9), colocar como valor
-  del key "origin" un string con la dirección donde correrá nuestro frontend,
-  sea en local o en línea.
+  del key "origin" un array, con strings con la dirección donde correrá nuestro
+  frontend, sea en local o en línea.
 - Iniciar el proyecto con el comando "npm run dev".
